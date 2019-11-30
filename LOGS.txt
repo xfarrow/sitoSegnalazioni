@@ -1,1 +1,1 @@
-Aggiunto captcha
+Beta funzionante.
