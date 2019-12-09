@@ -19,7 +19,7 @@
         MyCos VARCHAR(5) PRIMARY KEY,
 		CosPadre VARCHAR(5) NOT NULL,
 		Stringa VARCHAR(512) NOT NULL,
-		SegnalazioniRimaste INT NOT NULL DEFAULT 3
+		SegnalazioniRimaste INT NOT NULL DEFAULT 1
         );";
 	//Tabella messaggi privati
 	$sql=$sql."CREATE TABLE messaggio(
@@ -31,6 +31,13 @@
 	$sql=$sql."CREATE TABLE messaggioGlobale(
 			id INT PRIMARY KEY AUTO_INCREMENT, 
 			Text VARCHAR(512) NOT NULL
+			);";
+	$sql=$sql."CREATE TABLE pacchetto(
+			NumeroSegnalazioni INT NOT NULL,
+			Cos VARCHAR(5) NOT NULL,
+			Data TIMESTAMP NOT NULL,
+			Descrizione VARCHAR(50),
+			CONSTRAINT fkCosPacchetto FOREIGN KEY(Cos) REFERENCES user(MyCos)
 			);";
 	//non si sa mai che l'ID possa servire
 	
@@ -51,5 +58,9 @@
 	$sql="ALTER TABLE user ADD CONSTRAINT fkPadre FOREIGN KEY(CosPadre) REFERENCES user(MyCos);";
 	if($conn->query($sql)) echo "Constraints aggiunti <br>";
 	else die("Constraints non aggiunti ".$conn->error);
+	
+	$sql="INSERT INTO pacchetto VALUES(1,0,NOW(),'Default');";
+	if($conn->query($sql)) echo "Riga pacchetto creata";
+	else die("Errore creazione riga pacchetto ".$conn->error);
 	$conn->close();
 ?>

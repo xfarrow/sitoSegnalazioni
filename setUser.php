@@ -34,7 +34,8 @@
 		$row = $result->fetch_assoc();
 		$segnalazioni_rimaste=$row['SegnalazioniRimaste'];
 		if($segnalazioni_rimaste==0) die("Utente inattivo, impossibile iscriversi");
-		$segnalazioni_rimaste--;
+		else if($segnalazioni_rimaste!=-1) $segnalazioni_rimaste--;
+		//In modo che se è == -1 resta -1
 		
 		// Vengono generati i caratteri casuali che compongono il cos
 		do{
@@ -54,8 +55,9 @@
 			$sql = "INSERT INTO user(MyCos,CosPadre,Stringa) VALUES ('$myCos','$cosPadre','$stringa');";
 		}while(!($conn->query($sql)));
 		
-		//Viene aggiornato il numero di segnalazioni rimaste e inviato un messaggio al COS che ha invitato
+		//Viene aggiornato il numero di segnalazioni rimaste, aggiunto il pacchetto e inviato un messaggio al COS che ha invitato
 		$sql = "UPDATE user SET SegnalazioniRimaste=$segnalazioni_rimaste WHERE myCos='$cosPadre';";
+		$sql = $sql."INSERT INTO pacchetto VALUES(1,'$myCos,NOW(),'Default');";
 		$sql = $sql."INSERT INTO messaggio VALUES('$cosPadre','Complimenti! L\' utente ".$myCos." si &egrave; iscritto col tuo codice segnalazione');";
 		$conn->multi_query($sql);
 	}

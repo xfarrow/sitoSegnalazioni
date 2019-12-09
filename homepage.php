@@ -8,12 +8,8 @@
 	if(isset($_SESSION['cos']) and $_SESSION['loggedIn']){
 		$myCos = $_SESSION['cos'];
 		if($myCos=="0"){
-			echo "<form name='frm' method='post' action='inviaMessaggio.php'>
-			<input type='text' name='destCos' placeholder='COS destinatario'>
-			<input type='text' name='text' placeholder='messaggio'><br>
-			<input type='checkbox' value='1' name='global'>Globale<br>
-			<input type='submit' name='btn' value='invia'>
-			</form>
+			echo "<a href=\"./assegnaPacchetto.php\">Assegna pacchetti</a><br>
+			<a href=\"./inviaMessaggio.php\">Invia messaggi</a><br>
 			<a href=\"/sito/showUsers.php\">Mostra users</a>
 			</body></html>";
 		}else{
