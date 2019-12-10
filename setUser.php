@@ -25,7 +25,7 @@
 	//Verifica se il codice segnalazione inserito esiste davvero
 	$sql="SELECT myCos,SegnalazioniRimaste FROM User WHERE myCos = '$cosPadre';";
 	$result = $conn->query($sql);
-	if($result->num_rows==0) die("Non esiste nessun utente con questo Codice Segnalazione");
+	if($result->num_rows==0) die("Il codice segnalazione da te inserito potrebbe essere errato oppure l'utente che ti ha fornito il codice ha raggiunto il numero massimo di segnalazioni.");
 	
 	else{
 		
@@ -33,9 +33,9 @@
 		// altrimenti decrementa di 1 [da inserire in un trigger]
 		$row = $result->fetch_assoc();
 		$segnalazioni_rimaste=$row['SegnalazioniRimaste'];
-		if($segnalazioni_rimaste==0) die("Utente inattivo, impossibile iscriversi");
+		if($segnalazioni_rimaste==0) die("Il codice segnalazione da te inserito potrebbe essere errato oppure l'utente che ti ha fornito il codice ha raggiunto il numero massimo di segnalazioni.");
 		else if($segnalazioni_rimaste!=-1) $segnalazioni_rimaste--;
-		//In modo che se è == -1 resta -1
+		//In modo che se è == -1 resta -1 (Riga di sopra)
 		
 		// Vengono generati i caratteri casuali che compongono il cos
 		do{
@@ -57,7 +57,7 @@
 		
 		//Viene aggiornato il numero di segnalazioni rimaste, aggiunto il pacchetto e inviato un messaggio al COS che ha invitato
 		$sql = "UPDATE user SET SegnalazioniRimaste=$segnalazioni_rimaste WHERE myCos='$cosPadre';";
-		$sql = $sql."INSERT INTO pacchetto VALUES(1,'$myCos,NOW(),'Default');";
+		$sql = $sql."INSERT INTO pacchetto VALUES(1,'$myCos',NOW(),'Default');";
 		$sql = $sql."INSERT INTO messaggio VALUES('$cosPadre','Complimenti! L\' utente ".$myCos." si &egrave; iscritto col tuo codice segnalazione');";
 		$conn->multi_query($sql);
 	}

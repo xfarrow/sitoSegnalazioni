@@ -9,7 +9,7 @@
 	//non mostra il primo utente (0)
 	$result->fetch_assoc();
 	while($row=$result->fetch_assoc()){
-		echo "<br><b>Il codice segnalazione dell' utente ".$row['myCos']."</b> e' stato collegato a<br>";
+		echo "<br><b>Il codice segnalazione dell' utente <a href='infoUser.php?cos=".$row['myCos']."'>".$row['myCos']."</a></b> e' stato collegato a<br>";
 		
 		$cosPadre = $row['myCos'];
 		
