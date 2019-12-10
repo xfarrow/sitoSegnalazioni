@@ -7,7 +7,7 @@
 		<body>
 		<form name='frm' method='post' action='/sito/accesso.php'>
 			<input type='text' name='cos' placeholder='Inserisci il tuo COS'><br>
-			<textarea rows='4' cols='50' name='stringa' placeholder='Inserire stringa qui'></textarea>
+			<input type='password' name='password' placeholder='Inserire password'></textarea>
 			<input type='submit' name='btn' value='Invia'>
 		</form></body></html>";
 	}
@@ -16,15 +16,16 @@
 	session_start();
 	include 'create_connection.php';
 	$cos = $_POST['cos'];
-	$stringa = $_POST['stringa'];
-	$sql = "SELECT MyCos,Stringa FROM user WHERE MyCos='$cos' AND Stringa = '$stringa';";
+	$psw = md5($_POST['password']);
+	
+	$sql = "SELECT MyCos,Password FROM user WHERE MyCos='$cos' AND Password = '$psw';";
 	
 	if(!($result=$conn->query($sql))) die("Backend error 1");
 	
 	if($result->num_rows == 0) die("Non sei un utente registrato");
 	else if($result->num_rows == 1){ //Teoicamente basterebbe questo controllo per accertarci dell'identità, ma è vulnreabile alle injections
 		$row=$result->fetch_assoc();
-		if($row['MyCos']==$cos AND $row['Stringa'] == $stringa){
+		if($row['MyCos']==$cos AND $row['Password'] == $psw){
 			$_SESSION['cos'] = $cos;
 			$_SESSION['loggedIn'] = true;
 			header("Location: /sito/homepage.php");

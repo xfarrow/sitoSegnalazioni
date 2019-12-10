@@ -376,7 +376,7 @@
 			<br>
 			<input type="text" name="email" placeholder="e-mail">
 			<input type="number" name="telefono" placeholder="N. telefono"><br>
-			<textarea rows="4" cols="50" name="stringa" placeholder="Inserire stringa qui"></textarea><br>
+			<input type="password" name="password" placeholder="Inserire password"></textarea><br>
 			<input type="text" name="CosPadre" placeholder="Codice Segnalazione">
 			
 			<!-- Captcha -->

@@ -18,7 +18,7 @@
 		Telefono VARCHAR(15),
         MyCos VARCHAR(5) PRIMARY KEY,
 		CosPadre VARCHAR(5) NOT NULL,
-		Stringa VARCHAR(512) NOT NULL,
+		Password VARCHAR(64) NOT NULL,
 		SegnalazioniRimaste INT NOT NULL DEFAULT 1
         );";
 	//Tabella messaggi privati
@@ -47,10 +47,12 @@
 	while(mysqli_next_result($conn)){;} //PULISCE IL BUFFER ALTRIMENTI VA IN OUT OF SYNC
 	$conn->close();
 	
+	//password di admin
+	$psw=md5("root");
 	//Creazione tabella utente "fantasma"
 	include 'create_connection.php';
-	$sql = "INSERT INTO user(MyCos,CosPadre,Stringa)
-						VALUES('0','0','root');";
+	$sql = "INSERT INTO user(MyCos,CosPadre,Password)
+						VALUES('0','0','$psw');";
 	if($conn->query($sql)) echo "Tabella fantasma creata";
 	else die("Errore creazione tabella fantasma ".$conn->error);
 	

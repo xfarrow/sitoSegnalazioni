@@ -3,7 +3,7 @@
 	session_start();
 	include 'create_connection.php';
 
-	$stringa = $_POST['stringa'];
+	$psw = md5($_POST['password']);
 	$cosPadre = $_POST['CosPadre'];
 	$email = $_POST['email'];
 	$telefono = $_POST['telefono'];
@@ -20,7 +20,7 @@
 	*/
 	$forbidden = array(58,59,60,61,62,63,64);
 	
-	if($stringa=="" or $cosPadre=="") die("Valori obbligatori mancanti! La stringa e il COS sono obbligatori");
+	if($psw=="" or $cosPadre=="") die("Valori obbligatori mancanti! La stringa e il COS sono obbligatori");
 	
 	//Verifica se il codice segnalazione inserito esiste davvero
 	$sql="SELECT myCos,SegnalazioniRimaste FROM User WHERE myCos = '$cosPadre';";
@@ -52,7 +52,7 @@
 			$byte5 = chr($byte5);
 			$myCos = $byte1.$byte2.$byte3.$byte4.$byte5;
 			
-			$sql = "INSERT INTO user(MyCos,CosPadre,Stringa) VALUES ('$myCos','$cosPadre','$stringa');";
+			$sql = "INSERT INTO user(MyCos,CosPadre,Password) VALUES ('$myCos','$cosPadre','$psw');";
 		}while(!($conn->query($sql)));
 		
 		//Viene aggiornato il numero di segnalazioni rimaste, aggiunto il pacchetto e inviato un messaggio al COS che ha invitato
