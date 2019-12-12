@@ -61,6 +61,7 @@
 		$conn->multi_query($sql);
 	}
 	$conn->close();
+	$_SESSION['cos'] = $myCos;
 	echo "<html>
 		<body style = \"font-family: Cambria\">";
 	echo "<h1><b>My CS-code: ".$myCos."</b></h1>";
@@ -75,5 +76,10 @@
 <br>
 - se lo desideri, compila i seguenti campi: i dati inseriti potrebbero agevolare la procedura di recupero delle tue credenziali di accesso al sito oppure consentirti di ottenere direttamente via mail o via SMS le comunicazioni più importanti che ti riguardano. (Nota: se condividi anche tu la filosofia di questa piattaforma e ritieni un valore importante l’anonimato e la riservatezza che questa piattaforma è in grado di garantirti, prima di inserire il numero di telefono e/o l’indirizzo mail, leggi attentamente le (link)precauzioni da adottare nell'inserimento dell’indirizzo mail e del numero di telefono al fine di granire l’anonimato e la riservatezza).
 </font>
+<form name='frm' method='post' action='./inserimentoMailPhone.php'>
+<input type='text' name='email' placeholder='e-mail'><br>
+<input type='number' name='number' placeholder='N. di telefono'>
+<input type='submit' name='btn' value='OK'>
+</form>
 	";
 ?>
