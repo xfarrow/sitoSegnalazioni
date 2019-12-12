@@ -5,12 +5,30 @@
 		<link rel="stylesheet" type="text/css" href="css/msdropdown/dd.css" />
 		<script src="js/msdropdown/jquery.dd.min.js"></script> 
 		<link rel="stylesheet" type="text/css" href="css/msdropdown/flags.css" />
+		<link rel="stylesheet" type="text/css" href="css/msdropdown/grafica.css" />
+		
 		<title>Login page</title>
 	</head>
-	<body>
-		<h1>Website v.1.0</h1>
-		<h3>Inserisci obbligatoriamente una stringa e il Codice Segnalazione. Opzionalmente seleziona lo Stato, e-mail e telefono.</h3>
+	<body style = "font-family: Cambria">
+		<center><h1>Benvenuto</h1></center>
+		<font size="5">
+		Per rispettare il tuo diritto di riservatezza e quello degli altri utenti, la registrazioni alla presente piattaforma e il successivo utilizzo della stessa avviene in forma completamente anonima e priva di strumenti di tracciamento. L’anonimato e l’assenza di strumenti di tracciamento impedisce “naturalmente” l’attività di trasmissione dei dati sensibili degli utenti a terzi oppure il tracciamento della tua operatività.
+		</font>
+		<h3>Puoi iscriverti ed accedere a questa piattaforma se possiedi un Codice di Segnalzione (CS-code).</h3>
 		<form name="frm" action="/sito/setUser.php" method="POST">
+			<b>Inserisci il CODICE di SEGNALAZIONE (CS-code) in tuo possesso rispettando l’ordine dei caratteri maiuscoli e minuscoli presenti nel codice:</b>
+			
+			<br>
+			<input type="text" name="CosPadre" placeholder="Inserire CS-code">
+			<!--
+			<label for="inp" class="inp">
+				<input type="text" id="inp" placeholder="&nbsp;">
+				<span class="label">Codice segnalazione</span>
+				<span class="border"></span>
+			</label>
+			-->
+			<br><br>
+			<b>Inserisci una indicazione sommaria dell’area geografica in cui attualmente ti trovi:</b><br>
 			<select name="countries" id="countries" class="countries" style="width:300px;">
 			  <option value='ad' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag ad" data-title="Andorra">Andorra</option>
 			  <option value='ae' data-image="images/msdropdown/icons/blank.gif" data-imagecss="flag ae" data-title="United Arab Emirates">United Arab Emirates</option>
@@ -373,19 +391,18 @@
 				<option value="vt">Viterbo</option>
 			</select>
 			
-			<br>
-			<input type="text" name="email" placeholder="e-mail">
-			<input type="number" name="telefono" placeholder="N. telefono"><br>
-			<input type="password" name="password" placeholder="Inserire password"></textarea><br>
-			<input type="text" name="CosPadre" placeholder="Codice Segnalazione">
+			<br><br>
+			<b>Inserisci una PASSWORD  a tua scelta (utilizza preferibilmente password complesse contenenti lettere e numeri: potrai comunque modificare in futuro la password inserita)</b>
+			<input type="password" name="password" placeholder="Inserire password"><br>
 			
 			<!-- Captcha -->
+			<br>
 			<p><img src="./captcha.php" /></p>
-			<label>CAPTCHA <input type="text" name="captcha" />
+			<b>Trascrivi i caratteri che compaiono</b> <input type="text" name="captcha" />
 			
 			<button type="submbit">Invia</button>
 		</form><br>
-		<a href="/sito/accesso.php">Accedi</a>
+		<a href="/sito/accesso.php">oppure accedi</a>
 		<?php
 			include 'create_connection.php';
 			$righe_rimaste = 60466176; //numero di possibili combinazioni generabili (36^5: 26 caratteri+10 numeri x 5 caratteri)

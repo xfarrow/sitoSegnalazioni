@@ -5,8 +5,7 @@
 
 	$psw = md5($_POST['password']);
 	$cosPadre = $_POST['CosPadre'];
-	$email = $_POST['email'];
-	$telefono = $_POST['telefono'];
+	
 	
 	// Check captcha
 	if ($_POST['captcha'] != $_SESSION['captcha']) {
@@ -62,6 +61,19 @@
 		$conn->multi_query($sql);
 	}
 	$conn->close();
-	echo "Inserito con successo<br>";
-	echo "<h1>TUO codice segnalazione: ".$myCos." </h1>";
+	echo "<html>
+		<body style = \"font-family: Cambria\">";
+	echo "<h1><b>My CS-code: ".$myCos."</b></h1>";
+	echo"<font size=\"5\">
+	Alcune indicazioni:
+<br>
+- trascrivi in un foglio (per sicurezza evita di fare screnshot o fotografie della pagina) e conservale in luogo sicuro le credenziali e utilizzale per accedere alla piattaforma, per invitare i tuoi amici e per godere delle innumerevoli opportunità che il CS-code ti riserverà;
+<br>
+- invita le persone di cui ti fidi: grazie al tuo CS-code puoi segnalare questa piattaforma ad una persona che stimi o alla quale vorresti fare un interessante regalo utilizzando la procedura di invito a partecipare alla Community (link a sottosezione del menù Attività: “INVITA”). Prendi a tal proposito visione delle (link)regole di  segnalazione di altri utenti e  i vantaggi a te riservati dall’attività di segnalazione… perché le segnalazioni da te effettuate potrebbero rappresentare delle grandi opportunità sia per te che per la persona da te segnalata;
+<br>
+- controlla periodicamente nel menù in home-page  le COMUNICAZIONI rivolte alla COMMUNITY,  le COMUNICAZIONI a TE RISERVATE,  le OPPORTUNITA’ e i VANTAGGI ECONOMICI riservati ai possessori del CS-code:  quello che vedrai ti stupirà!
+<br>
+- se lo desideri, compila i seguenti campi: i dati inseriti potrebbero agevolare la procedura di recupero delle tue credenziali di accesso al sito oppure consentirti di ottenere direttamente via mail o via SMS le comunicazioni più importanti che ti riguardano. (Nota: se condividi anche tu la filosofia di questa piattaforma e ritieni un valore importante l’anonimato e la riservatezza che questa piattaforma è in grado di garantirti, prima di inserire il numero di telefono e/o l’indirizzo mail, leggi attentamente le (link)precauzioni da adottare nell'inserimento dell’indirizzo mail e del numero di telefono al fine di granire l’anonimato e la riservatezza).
+</font>
+	";
 ?>
