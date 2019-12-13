@@ -22,7 +22,7 @@
 	if($psw=="" or $cosPadre=="") die("Valori obbligatori mancanti! La stringa e il COS sono obbligatori");
 	
 	//Verifica se il codice segnalazione inserito esiste davvero
-	$sql="SELECT myCos,SegnalazioniRimaste FROM User WHERE myCos = '$cosPadre';";
+	$sql="SELECT myCos,SegnalazioniRimaste,SegnalazioniIllimitate FROM User WHERE myCos = '$cosPadre';";
 	$result = $conn->query($sql);
 	if($result->num_rows==0) die("Il codice segnalazione da te inserito potrebbe essere errato oppure l'utente che ti ha fornito il codice ha raggiunto il numero massimo di segnalazioni.");
 	
@@ -32,8 +32,9 @@
 		// altrimenti decrementa di 1 [da inserire in un trigger]
 		$row = $result->fetch_assoc();
 		$segnalazioni_rimaste=$row['SegnalazioniRimaste'];
-		if($segnalazioni_rimaste==0) die("Il codice segnalazione da te inserito potrebbe essere errato oppure l'utente che ti ha fornito il codice ha raggiunto il numero massimo di segnalazioni.");
-		else if($segnalazioni_rimaste!=-1) $segnalazioni_rimaste--;
+		$segnalazioniIllimitateBool = $row['SegnalazioniIllimitate'];
+		if($segnalazioni_rimaste==0 and $segnalazioniIllimitateBool!='Y') die("Il codice segnalazione da te inserito potrebbe essere errato oppure l'utente che ti ha fornito il codice ha raggiunto il numero massimo di segnalazioni.");
+		if($segnalazioniIllimitateBool!='Y') $segnalazioni_rimaste--;
 		//In modo che se è == -1 resta -1 (Riga di sopra)
 		
 		// Vengono generati i caratteri casuali che compongono il cos

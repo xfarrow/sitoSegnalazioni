@@ -19,7 +19,8 @@
         MyCos VARCHAR(5) PRIMARY KEY,
 		CosPadre VARCHAR(5) NOT NULL,
 		Password VARCHAR(64) NOT NULL,
-		SegnalazioniRimaste INT NOT NULL DEFAULT 1
+		SegnalazioniRimaste INT NOT NULL DEFAULT 1,
+		SegnalazioniIllimitate CHAR NOT NULL DEFAULT 'N'
         );";
 	//Tabella messaggi privati
 	$sql=$sql."CREATE TABLE messaggio(

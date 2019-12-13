@@ -27,7 +27,8 @@
 	$sql = "SELECT Text FROM messaggio WHERE CosDestinatario = '$myCos';";
 	$result=$conn->query($sql);
 	while($row = $result->fetch_assoc()){
-		echo $row['Text']."<br><br>";
+		echo "<div class='divMessaggio'>";
+		echo $row['Text']."</div><br><br>";
 	}
 	$conn->close();
 	echo"</body></html>";

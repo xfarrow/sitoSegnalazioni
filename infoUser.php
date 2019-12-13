@@ -2,7 +2,12 @@
 	session_start();
 	include 'create_connection.php';
 	$cos = $_GET['cos'];
-	if(!isset($_SESSION['loggedIn']) or $_SESSION['cos']!="0") die("Solo gli amministratori possono visualizzare questa pagina");
+	if(!isset($_SESSION['loggedIn']) or ($_SESSION['cos']!="0" and $_SESSION['cos']!=$cos) ) die("Solo gli amministratori o l'utente in questione possono visualizzare questa pagina");
+	
+	$sql="SELECT SegnalazioniIllimitate FROM user WHERE MyCos='$cos';";
+	if(!($result=$conn->query($sql))) die("Backend query 4".$conn->error);
+	$row = $result->fetch_assoc();
+	$segnalazioniIllimitateBool = $row['SegnalazioniIllimitate'];
 	
 	/*
 	- Numero segnalazioni totali attribuitegli
@@ -34,12 +39,16 @@
 	if(!($result=$conn->query($sql))) die("Backend query 3".$conn->error);
 	$row = $result->fetch_assoc();
 	$numeroSegnalazioniPacchettoPiuRecente = $row['NumeroSegnalazioni'];
+	if($numeroSegnalazioniPacchettoPiuRecente==0) $numeroSegnalazioniPacchettoPiuRecente="Illimitate";
 	
 	$conn->close();
 	
 	echo"<html><body><h2>Per l'utente con codice segnalazione: ".$cos."</h2>
-	<b><br>Numero segnalazioni totali attribuite:</b> ".$numeroSegnalazioniTotali.
-	"<br><b>Numero totale di pacchetti attribuiti:</b> ".$pacchettiAttribuiti.
+	<b><br>Numero segnalazioni totali attribuite:</b> ";
+	
+	if($segnalazioniIllimitateBool=='Y') echo"Illimitate"; 
+	else echo $numeroSegnalazioniTotali;
+	echo "<br><b>Numero totale di pacchetti attribuiti:</b> ".$pacchettiAttribuiti.
 	"<br><b>Data del pacchetto più recente:</b> ".$pacchetto_piu_recente.
 	"<br><b>Numero di segnalazioni fatte:</b> ".$numeroSegnalazioniFatte.
 	"<br><b>Numero di segnalazioni contenute nel pacchetto più recente:</b> ".$numeroSegnalazioniPacchettoPiuRecente.

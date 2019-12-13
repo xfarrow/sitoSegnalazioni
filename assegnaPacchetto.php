@@ -23,7 +23,7 @@
 					<option value=1000000>1.000.000</option>
 					<option value=10000000>10.000.000</option>
 					<option value=100000000>100.000.000</option>
-					<option value=-1>Illimitate</option>
+					<option value=0>Illimitate</option>
 				</select><br>
 				<input type='submit' name='btn' value='invia'>
 				</form><br>
@@ -33,16 +33,23 @@
 					include 'create_connection.php';
 					$numeroSegnalazioni = $_POST['NumeroSegnalazioni'];
 					$cos = $_POST['destCos'];
+					$segnalazioniIllimitateBool = 'N';
 					
-					$segnalazioni_rimaste_query = "SELECT SegnalazioniRimaste FROM user WHERE MyCos='$cos';";
+					$segnalazioni_rimaste_query = "SELECT SegnalazioniRimaste,SegnalazioniIllimitate FROM user WHERE MyCos='$cos';";
 					if(!($result = $conn->query($segnalazioni_rimaste_query))) die("Errore retrieveng delle segnalazioni rimaste".$conn->error);
 					$row = $result->fetch_assoc();
+					
+					$segnalazioniIllimitateFromQuery = $row['SegnalazioniIllimitate'];
+					if($segnalazioniIllimitateFromQuery=='Y') die("Impossibile aggiornare le segnalazioni di questo utente. Ha già infinite segnalazioni disponibili");
 					$segnalazioni_rimaste = $row['SegnalazioniRimaste'];
-					if($numeroSegnalazioni==-1) $segnalazioni_rimaste=-1;
+					if($numeroSegnalazioni==0){ 
+						$segnalazioni_rimaste=-1;
+						$segnalazioniIllimitateBool = 'Y';
+					}
 					else $segnalazioni_rimaste+=$numeroSegnalazioni;
 					
 					$sql="INSERT INTO pacchetto(NumeroSegnalazioni,Cos,Data) VALUES($numeroSegnalazioni,'$cos',NOW());";
-					$sql =$sql."UPDATE user SET SegnalazioniRimaste=$segnalazioni_rimaste WHERE myCos='$cos';";
+					$sql =$sql."UPDATE user SET SegnalazioniRimaste=$segnalazioni_rimaste, SegnalazioniIllimitate='$segnalazioniIllimitateBool' WHERE myCos='$cos';";
 					if(!$conn->multi_query($sql)) die("Error ".$conn->error);
 					$conn->close();
 					unset($_POST['btn']);

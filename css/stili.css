@@ -26,4 +26,8 @@ li a:hover:not(.active) {
   background-color: #006666;
 }
 
-
+.divMessaggio{
+	background-color:#e5e5e5;
+	width: 75%;
+	overflow-wrap: anywhere;
+}

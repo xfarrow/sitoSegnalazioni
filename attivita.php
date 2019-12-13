@@ -30,14 +30,14 @@
 			</body></html>";
 	}else{
 			echo "<a href='#invita' onclick='invita()'>Invita</a><br>
-			<a href='./segnala.php'>Segnala</a>
-			<a href=''>Contatori</a>";
+			<a href='./segnala.php'>Segnala</a><br>
+			<a href='./infoUser.php?cos=$myCos'>Mie statistiche</a>";
 	}
 	
 	echo "<script>
 		function invita() {
 		var myWindow = window.open(\"\", \"MsgWindow\", \"width=512,height=150\");
-		myWindow.document.write(\"Copia il seguente link. Il ricevente potrà iscriversi con il tuo codice.<br><h1><b>.accesso.php?cos=$myCos</b></h1>\");
+		myWindow.document.write(\"<h3>Copia il seguente link. Il ricevente potrà iscriversi con il tuo codice.</h3><br><h1><b>.iscrizione.php?cos=$myCos</b></h1>\");
 		}
 		</script>";
 	echo"</body></html>";

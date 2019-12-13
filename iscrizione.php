@@ -69,7 +69,14 @@
 			<b>Inserisci il CODICE di SEGNALAZIONE (CS-code) in tuo possesso rispettando l’ordine dei caratteri maiuscoli e minuscoli presenti nel codice:</b>
 			
 			<br>
-			<input type="text" name="CosPadre" placeholder="Inserire CS-code">
+			<?php
+				if(isset($_GET['cos'])){
+					echo "<input type=\"text\" value=".$_GET['cos']." name=\"CosPadre\" placeholder=\"Inserire CS-code\">";
+				}else{
+					echo "<input type=\"text\" name=\"CosPadre\" placeholder=\"Inserire CS-code\">";
+				}
+			?>
+			
 			<!--
 			<label for="inp" class="inp">
 				<input type="text" id="inp" placeholder="&nbsp;">
