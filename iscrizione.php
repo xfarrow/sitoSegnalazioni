@@ -5,11 +5,61 @@
 		<link rel="stylesheet" type="text/css" href="css/msdropdown/dd.css" />
 		<script src="js/msdropdown/jquery.dd.min.js"></script> 
 		<link rel="stylesheet" type="text/css" href="css/msdropdown/flags.css" />
-		<link rel="stylesheet" type="text/css" href="css/msdropdown/grafica.css" />
-		
+		<link rel="stylesheet" type="text/css" href="css/stili.css" />
 		<title>Login page</title>
+		
+		<!--
+		popup
+		-->
+		<link rel="stylesheet" type="text/css" href="css/popup.css" />
+		<script type='text/javascript'>
+		$(function(){
+		var overlay = $('<div id="overlay"></div>');
+		overlay.show();
+		overlay.appendTo(document.body);
+		$('.popup').show();
+		$('.close').click(function(){
+		$('.popup').hide();
+		overlay.appendTo(document.body).remove();
+		return false;
+		});
+
+
+		$('.x').click(function(){
+		$('.popup').hide();
+		overlay.appendTo(document.body).remove();
+		return false;
+		});
+		});
+	</script>
+	
 	</head>
 	<body style = "font-family: Cambria">
+		
+		<!-- popup -->
+		<div class='popup'>
+			<div class='cnt223'>
+				<img src='./images/close.ico' alt='quit' class='x' id='x' />
+				<p><h3>
+					Informativa sui <b>COOKIES</b>, sull’utilizzo di <b>DATI SENSIBILI</b> e sugli  strumenti di <b>TRACCIAMENTO INFORMATICO</b></h3><br>
+					La registrazione dell’utente alla piattaforma e il successivo utilizzo della stessa avviene in forma completamente <b>anonima</b> e <b>priva di strumenti di tracciamento</b> (es: IP). L’anonimato e l’assenza di strumenti di tracciamento impedisce “naturalmente” (per assenza dei dati) di trasmettere a terzi i dati sensibili degli utenti o la tua specifica operatività.
+					Esclusivamente al fine di semplificare l’utilizzo di interfacce e funzioni complesse potrebbero venire utilizzati nel futuro cookies prettamente tecnici  che in quanto tali escludono finalità di tracciamento.  
+					E’ da considerarsi comunque una buona abitudine dell’utente eliminare periodicamente la globalità dei cookies registrati nel proprio browser.
+					<br/>
+					<br/>
+					<a href='' class='close'>Chiudi</a> 
+				</p>
+			</div>
+		</div>
+		
+		
+		<ul>
+			<li><a href="./homepage.php">Home</a></li>
+			<li><a href="./Vantaggi.php">Vantaggi & opportunità</a></li>
+			<li  class="active" style="float:right"><a href="./iscrizione.php">Iscriviti</a></li>
+			<li style="float:right"><a href="./accesso.php">Accedi</a></li>
+		</ul>
+		
 		<center><h1>Benvenuto</h1></center>
 		<font size="5">
 		Per rispettare il tuo diritto di riservatezza e quello degli altri utenti, la registrazioni alla presente piattaforma e il successivo utilizzo della stessa avviene in forma completamente anonima e priva di strumenti di tracciamento. L’anonimato e l’assenza di strumenti di tracciamento impedisce “naturalmente” l’attività di trasmissione dei dati sensibili degli utenti a terzi oppure il tracciamento della tua operatività.
