@@ -31,11 +31,14 @@
 		// Gestione delle segnalazioni rimaste. Se le segnalazioni sono 0 allora l'utente è inattivo,
 		// altrimenti decrementa di 1 [da inserire in un trigger]
 		$row = $result->fetch_assoc();
-		$segnalazioni_rimaste=$row['SegnalazioniRimaste'];
-		$segnalazioniIllimitateBool = $row['SegnalazioniIllimitate'];
+		$segnalazioni_rimaste=$row['SegnalazioniRimaste']; //Attributo preso dalla tabella user
+		$segnalazioniIllimitateBool = $row['SegnalazioniIllimitate']; //Attributo preso dalla tabella user
+		
 		if($segnalazioni_rimaste==0 and $segnalazioniIllimitateBool!='Y') die("Il codice segnalazione da te inserito potrebbe essere errato oppure l'utente che ti ha fornito il codice ha raggiunto il numero massimo di segnalazioni.");
+		
+		//in modo tale che se le segnalazioni sono illimitate, non mi aggiorna (perchè sarebbe inutile) il # di segnalazioni rimaste (che rimane a -1)
 		if($segnalazioniIllimitateBool!='Y') $segnalazioni_rimaste--;
-		//In modo che se è == -1 resta -1 (Riga di sopra)
+		
 		
 		// Vengono generati i caratteri casuali che compongono il cos
 		do{

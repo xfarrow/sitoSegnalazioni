@@ -39,6 +39,7 @@
 		if($row['MyCos']==$cos AND $row['Password'] == $psw){
 			$_SESSION['cos'] = $cos;
 			$_SESSION['loggedIn'] = true;
+			$conn->close();
 			header("Location: /sito/homepage.php");
 		}
 	}else die("Backend error 2");

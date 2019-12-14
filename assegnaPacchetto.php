@@ -1,11 +1,24 @@
 <?php
 	session_start();
-	echo "<html><body>";
+	echo "<html><head>
+	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" />
+	</head>
+	<body style = \"font-family: Cambria\">";
 	
 	if(isset($_SESSION['cos']) and $_SESSION['loggedIn']){
 		$myCos = $_SESSION['cos'];
 		if($myCos=="0"){
 			if(!isset($_POST['btn'])){
+				
+				echo"<ul>
+			<li><a href=\"./homepage.php\">Home</a></li>
+			<li><a href=\"./comunicazioniAllaCommunity.php\">Comunicazioni alla community</a></li>
+			<li><a href=\"./comunicazioniAUtente.php\">Comunicazioni all'utente</a></li>
+			<li><a href=\"./Vantaggi.php\">Vantaggi & opportunità</a></li>
+			<li><a class=\"active\" href=\"./attivita.php\">Attività</a></li>
+			<li style=\"float:right\"><a href=\"./logout.php\">Logout</a></li>";
+			echo"</ul>";
+				echo "<div style='margin-left:2%'>";
 				echo "<form name='frm' method='post' action='AssegnaPacchetto.php'>
 				<br><input type='text' name='destCos' placeholder='Inserire COS'>
 				<select name='NumeroSegnalazioni'>
@@ -25,13 +38,12 @@
 					<option value=100000000>100.000.000</option>
 					<option value=0>Illimitate</option>
 				</select><br>
-				<input type='submit' name='btn' value='invia'>
-				</form><br>
-				<a href=\"./homepage.php\">Homepage</a></body></html>";
+				<input type='submit' name='btn' class=\"button button1\" value='Invia'>
+				</form></div><br>";
 			}else{
 					//CONTROLLER QUI
 					include 'create_connection.php';
-					$numeroSegnalazioni = $_POST['NumeroSegnalazioni'];
+					$numeroSegnalazioni = $_POST['NumeroSegnalazioni']; //attributo preso dalla tabella user
 					$cos = $_POST['destCos'];
 					$segnalazioniIllimitateBool = 'N';
 					
@@ -42,6 +54,8 @@
 					$segnalazioniIllimitateFromQuery = $row['SegnalazioniIllimitate'];
 					if($segnalazioniIllimitateFromQuery=='Y') die("Impossibile aggiornare le segnalazioni di questo utente. Ha già infinite segnalazioni disponibili");
 					$segnalazioni_rimaste = $row['SegnalazioniRimaste'];
+					
+					//setta a illimitato oppure no
 					if($numeroSegnalazioni==0){ 
 						$segnalazioni_rimaste=-1;
 						$segnalazioniIllimitateBool = 'Y';
@@ -53,6 +67,7 @@
 					if(!$conn->multi_query($sql)) die("Error ".$conn->error);
 					$conn->close();
 					unset($_POST['btn']);
+					$conn->close();
 					header("Location: ./AssegnaPacchetto.php");
 			}
 		}else die("Solo gli amministratori possono accedere a questa pagina</body></html>");

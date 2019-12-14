@@ -52,6 +52,11 @@
 	"<br><b>Data del pacchetto più recente:</b> ".$pacchetto_piu_recente.
 	"<br><b>Numero di segnalazioni fatte:</b> ".$numeroSegnalazioniFatte.
 	"<br><b>Numero di segnalazioni contenute nel pacchetto più recente:</b> ".$numeroSegnalazioniPacchettoPiuRecente.
-	"</body></html>";
+	"<br><b>Numero di segnalazioni rimaste:</b> ";
+	
+	if($segnalazioniIllimitateBool=='Y') echo"Illimitate";
+	else echo ($pacchettiAttribuiti - $numeroSegnalazioniFatte);
+	
+	echo "</body></html>";
 	
 ?>

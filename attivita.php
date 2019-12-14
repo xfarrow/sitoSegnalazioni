@@ -24,11 +24,18 @@
 		}
 		
 	if($myCos=="0"){
-			echo "<a href=\"./assegnaPacchetto.php\">Assegna pacchetti</a><br>
-			<a href=\"./inviaMessaggio.php\">Invia messaggi</a><br>
-			<a href=\"/sito/showUsers.php\">Mostra users</a>
+			echo "<center><h1>Attività amministrazione</h1></center>";
+			echo "<span style='font-size:10px;'>&#9679;</span>";
+			echo "<a href=\"./assegnaPacchetto.php\"> Assegna pacchetti</a><br>
+			<br><span style='font-size:10px;'>&#9679;</span>
+			<a href=\"./inviaMessaggio.php\"> Invia messaggi</a><br>
+			<br><span style='font-size:10px;'>&#9679;</span>
+			<a href=\"/sito/showUsers.php\"> Mostra users</a><br>
+			<br><span style='font-size:10px;'>&#9679;</span>
+			<a href='./infoUser.php?cos=$myCos'> Mie statistiche</a>
 			</body></html>";
 	}else{
+			echo "<center><h1>Attività</h1></center>";
 			echo "<a href='#invita' onclick='invita()'>Invita</a><br>
 			<a href='./segnala.php'>Segnala</a><br>
 			<a href='./infoUser.php?cos=$myCos'>Mie statistiche</a>";

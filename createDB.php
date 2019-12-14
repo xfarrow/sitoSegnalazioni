@@ -62,7 +62,7 @@
 	if($conn->query($sql)) echo "Constraints aggiunti <br>";
 	else die("Constraints non aggiunti ".$conn->error);
 	
-	$sql="INSERT INTO pacchetto VALUES(1,0,NOW(),'Default');";
+	$sql="INSERT INTO pacchetto VALUES(0,0,NOW(),'Default');";
 	if($conn->query($sql)) echo "Riga pacchetto creata";
 	else die("Errore creazione riga pacchetto ".$conn->error);
 	$conn->close();

@@ -22,5 +22,6 @@
 					echo $row['MyCos']." <br>";
 				}
 			}
+			$conn->close();
 		}
 ?>
