@@ -1,5 +1,7 @@
 <?php
 	// Mostra tutti gli utenti a cosa sono collegati
+	
+	echo "<html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"></head><body>";
 	session_start();
 	include 'create_connection.php';
 	$myCos = $_SESSION['cos'];
@@ -22,4 +24,5 @@
 		
 	}
 	$conn->close();
+	echo "</body>";
 ?>

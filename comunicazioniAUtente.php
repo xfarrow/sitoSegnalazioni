@@ -3,6 +3,7 @@
 	include 'create_connection.php';
 	echo "<html>
 	<head>
+	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" />
 	</head>
 	<body style = \"font-family: Cambria\">";
@@ -19,10 +20,11 @@
 		<li><a class=\"active\" href=\"./comunicazioniAUtente.php\">Comunicazioni all'utente</a></li>
 		<li><a href=\"./vantaggi.php\">Vantaggi & opportunità</a></li>
 		<li><a href=\"./attivita.php\">Attività</a></li>
-		<li style=\"float:right\"><a href=\"./logout.php\">Logout</a></li>
+		<li class='floatingMobile'><a href=\"./logout.php\">Logout</a></li>
 		</ul>";
 		
-		
+	//il divMargine evita che nella visualizzazione mobile il menu copre il testo
+	echo "<div class='divMargine'>";
 	echo "<center><h1>Comunicazioni per te</h1></center>";
 	$sql = "SELECT Text FROM messaggio WHERE CosDestinatario = '$myCos';";
 	$result=$conn->query($sql);
@@ -31,5 +33,5 @@
 		echo $row['Text']."</div><br><br>";
 	}
 	$conn->close();
-	echo"</body></html>";
+	echo"</div></body></html>";
 ?>

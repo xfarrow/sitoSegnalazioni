@@ -15,13 +15,55 @@ display: none;
 .cnt223 a{
 text-decoration: none;
 }
+
 .popup{
+	
 width: 100%;
 margin: 0 auto;
 display: none;
 position: fixed;
 z-index: 101;
 }
+
+/* popup per smartphone */
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 767px) {
+.cnt223{
+	
+width: 70%;
+height: 300px;
+margin: 100px auto;
+background: #f3f3f3;
+position: relative;
+z-index: 103;
+padding: 10px;
+border-radius: 5px;
+box-shadow: 0 2px 5px #000;
+}
+
+.divScrollabile{
+	margin-top:0px;
+	width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}	
+.cnt223 .x{
+float: right;
+height: 35px;
+left: 92%;
+position: absolute;
+top: -25px;
+width: 34px;
+}
+}
+
+/* popup per desktop */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1920px) {
+
 .cnt223{
 min-width: 600px;
 width: 600px;
@@ -34,6 +76,16 @@ padding: 10px;
 border-radius: 5px;
 box-shadow: 0 2px 5px #000;
 }
+.cnt223 .x{
+float: right;
+height: 35px;
+left: 22px;
+position: relative;
+top: -25px;
+width: 34px;
+}
+}
+
 .cnt223 p{
 clear: both;
 color: #555555;
@@ -43,14 +95,7 @@ text-align: justify;
 color: #d91900;
 font-weight: bold;
 }
-.cnt223 .x{
-float: right;
-height: 35px;
-left: 22px;
-position: relative;
-top: -25px;
-width: 34px;
-}
+
 .cnt223 .x:hover{
 cursor: pointer;
 }

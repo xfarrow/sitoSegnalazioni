@@ -6,21 +6,26 @@
 		echo "<html>
 		<head>
 			<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" />
+			<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		</head>
 		<body style = \"font-family: Cambria\">
 		
 		<ul>
 			<li><a href=\"./homepage.php\">Home</a></li>
 			<li><a href=\"./Vantaggi.php\">Vantaggi & opportunità</a></li>
-			<li style=\"float:right\"><a href=\"./iscrizione.php\">Iscriviti</a></li>
-			<li class=\"active\" style=\"float:right\"><a href=\"./accesso.php\">Accedi</a></li>
-		</ul>
-		<center><b><h1>Pagina di accesso</h1></b></center><br><br>
+			<li class='floatingMobile'><a href=\"./iscrizione.php\">Iscriviti</a></li>
+			<li class='active floatingMobile'><a href=\"./accesso.php\">Accedi</a></li>
+		</ul>";
+		
+		//il divMargine evita che nella visualizzazione mobile il menu copre il testo
+		echo "<div class='divMargine'>";
+		
+		echo "<center><b><h1>Pagina di accesso</h1></b><br><br>
 		<form name='frm' method='post' action='/sito/accesso.php'>
 			<input type='text' name='cos' placeholder='Inserisci il tuo COS'><br><br>
-			<input type='password' name='password' placeholder='Inserire password'></textarea>
-			<input type='submit' name='btn' value='Invia'>
-		</form></body></html>";
+			<input type='password' name='password' placeholder='Inserire password'></textarea><br><br>
+			<input type='submit' class='button button1' name='btn' value='Invia'>
+		</div></form></center></body></html>";
 	}
 	//se il bottone è stato premuto (parte logica)
 	else{

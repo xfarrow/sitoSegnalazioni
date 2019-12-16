@@ -2,9 +2,25 @@
 	// Creazione utente
 	session_start();
 	include 'create_connection.php';
-
+	
+		echo "<html>
+		<head>
+		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" /></head>";
+	
+	
+	if( (!isset($_POST['password'])) or (!isset($_POST['CosPadre'])) ){ 
+		die("Valori obbligatori mancanti! La stringa e il COS sono obbligatori");
+	}
+	
 	$psw = md5($_POST['password']);
 	$cosPadre = $_POST['CosPadre'];
+	
+	
+	if(!isset($_POST['countries'])) die("Inserimento Stato obbligatorio");
+	$country = $_POST['countries'];
+	if(isset($_POST['provincia'])) $provincia = $_POST['provincia'];
+	else $provincia="NULL";	
 	
 	
 	// Check captcha
@@ -19,7 +35,6 @@
 	*/
 	$forbidden = array(58,59,60,61,62,63,64);
 	
-	if($psw=="" or $cosPadre=="") die("Valori obbligatori mancanti! La stringa e il COS sono obbligatori");
 	
 	//Verifica se il codice segnalazione inserito esiste davvero
 	$sql="SELECT myCos,SegnalazioniRimaste,SegnalazioniIllimitate FROM User WHERE myCos = '$cosPadre';";
@@ -59,15 +74,17 @@
 		}while(!($conn->query($sql)));
 		
 		//Viene aggiornato il numero di segnalazioni rimaste, aggiunto il pacchetto e inviato un messaggio al COS che ha invitato
+		// ho preferito un update di stato e provincia per non affaticare il while
 		$sql = "UPDATE user SET SegnalazioniRimaste=$segnalazioni_rimaste WHERE myCos='$cosPadre';";
+		$sql = $sql."UPDATE user SET Stato = '$country', Provincia='$provincia' WHERE myCos = '$myCos';";
 		$sql = $sql."INSERT INTO pacchetto VALUES(1,'$myCos',NOW(),'Default');";
 		$sql = $sql."INSERT INTO messaggio VALUES('$cosPadre','Complimenti! L\' utente ".$myCos." si &egrave; iscritto col tuo codice segnalazione');";
 		$conn->multi_query($sql);
 	}
 	$conn->close();
+	
 	$_SESSION['cos'] = $myCos;
-	echo "<html>
-		<body style = \"font-family: Cambria\">";
+	echo "<body style = \"font-family: Cambria\">";
 	echo "<h1><b>My CS-code: ".$myCos."</b></h1>";
 	echo"<font size=\"5\">
 	Alcune indicazioni:
@@ -80,10 +97,12 @@
 <br>
 - se lo desideri, compila i seguenti campi: i dati inseriti potrebbero agevolare la procedura di recupero delle tue credenziali di accesso al sito oppure consentirti di ottenere direttamente via mail o via SMS le comunicazioni più importanti che ti riguardano. (Nota: se condividi anche tu la filosofia di questa piattaforma e ritieni un valore importante l’anonimato e la riservatezza che questa piattaforma è in grado di garantirti, prima di inserire il numero di telefono e/o l’indirizzo mail, leggi attentamente le (link)precauzioni da adottare nell'inserimento dell’indirizzo mail e del numero di telefono al fine di granire l’anonimato e la riservatezza).
 </font>
+<center>
 <form name='frm' method='post' action='./inserimentoMailPhone.php'>
-<input type='text' name='email' placeholder='e-mail'><br>
-<input type='number' name='number' placeholder='N. di telefono'>
-<input type='submit' name='btn' value='OK'>
+<input type='text' name='email' placeholder='e-mail'><br><br><br>
+<input type='number' name='number' placeholder='N. di telefono'><br>
+<input class='button button1' type='submit' name='btn' value='OK'>
+<center>
 </form>
 	";
 ?>

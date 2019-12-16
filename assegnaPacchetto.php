@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	echo "<html><head>
+	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" />
 	</head>
 	<body style = \"font-family: Cambria\">";
@@ -16,9 +17,14 @@
 			<li><a href=\"./comunicazioniAUtente.php\">Comunicazioni all'utente</a></li>
 			<li><a href=\"./Vantaggi.php\">Vantaggi & opportunità</a></li>
 			<li><a class=\"active\" href=\"./attivita.php\">Attività</a></li>
-			<li style=\"float:right\"><a href=\"./logout.php\">Logout</a></li>";
+			<li class='floatingMobile'><a href=\"./logout.php\">Logout</a></li>";
 			echo"</ul>";
+			
+			//il divMargine evita che nella visualizzazione mobile il menu copre il testo
+			echo "<div class='divMargine'>";
+			
 				echo "<div style='margin-left:2%'>";
+				echo "<center><h1>Assegna un pacchetto di segnalazioni</h1></center>";
 				echo "<form name='frm' method='post' action='AssegnaPacchetto.php'>
 				<br><input type='text' name='destCos' placeholder='Inserire COS'>
 				<select name='NumeroSegnalazioni'>
@@ -37,9 +43,9 @@
 					<option value=10000000>10.000.000</option>
 					<option value=100000000>100.000.000</option>
 					<option value=0>Illimitate</option>
-				</select><br>
+				</select><br><br><br>
 				<input type='submit' name='btn' class=\"button button1\" value='Invia'>
-				</form></div><br>";
+				</form></div></div><br>";
 			}else{
 					//CONTROLLER QUI
 					include 'create_connection.php';

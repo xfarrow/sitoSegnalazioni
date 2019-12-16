@@ -12,8 +12,8 @@
 	
 	//Tabella utente
     $sql="CREATE TABLE user(
-		Stato VARCHAR(15),
-		Provincia VARCHAR(20),
+		Stato VARCHAR(3),
+		Provincia VARCHAR(2),
 		Email VARCHAR(30),
 		Telefono VARCHAR(15),
         MyCos VARCHAR(5) PRIMARY KEY,

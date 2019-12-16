@@ -3,6 +3,7 @@
 	
 	echo "<html>
 	<head>
+	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" />
 	</head>
 	<body style = \"font-family: Cambria\">";
@@ -19,12 +20,14 @@
 			<li><a href=\"./comunicazioniAUtente.php\">Comunicazioni all'utente</a></li>
 			<li><a href=\"./Vantaggi.php\">Vantaggi & opportunità</a></li>
 			<li><a class=\"active\" href=\"./attivita.php\">Attività</a></li>
-			<li style=\"float:right\"><a href=\"./logout.php\">Logout</a></li>";
+			<li class='floatingMobile'><a href=\"./logout.php\">Logout</a></li>";
 			echo"</ul>";
 		}
-		
+	//il divMargine evita che nella visualizzazione mobile il menu copre il testo
+	echo "<div class='divMargine'>";
+	
 	if($myCos=="0"){
-			echo "<center><h1>Attività amministrazione</h1></center>";
+			echo "<center><h1>Attività amministratore</h1></center>";
 			echo "<span style='font-size:10px;'>&#9679;</span>";
 			echo "<a href=\"./assegnaPacchetto.php\"> Assegna pacchetti</a><br>
 			<br><span style='font-size:10px;'>&#9679;</span>
@@ -41,11 +44,12 @@
 			<a href='./infoUser.php?cos=$myCos'>Mie statistiche</a>";
 	}
 	
+	//script che apre la pagina per creare il link da inviare all'amico
 	echo "<script>
 		function invita() {
 		var myWindow = window.open(\"\", \"MsgWindow\", \"width=512,height=150\");
 		myWindow.document.write(\"<h3>Copia il seguente link. Il ricevente potrà iscriversi con il tuo codice.</h3><br><h1><b>.iscrizione.php?cos=$myCos</b></h1>\");
 		}
 		</script>";
-	echo"</body></html>";
+	echo"</div></body></html>";
 ?>

@@ -43,7 +43,9 @@
 	
 	$conn->close();
 	
-	echo"<html><body><h2>Per l'utente con codice segnalazione: ".$cos."</h2>
+	echo"<html>
+	<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"></head>
+	<body><h2>Per l'utente con codice segnalazione: ".$cos."</h2>
 	<b><br>Numero segnalazioni totali attribuite:</b> ";
 	
 	if($segnalazioniIllimitateBool=='Y') echo"Illimitate"; 

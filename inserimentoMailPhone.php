@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	include 'create_connection.php';
-	if(!(isset($_SESSION['cos']) or $_SESSION['loggedIn'])) die("Error - session timed out and/or not valid identifier");
+	if(!(isset($_SESSION['cos']))) die("Error - session timed out and/or not valid identifier");
 	
 	$myCos = $_SESSION['cos'];
 	if(isset($_POST['number']))
