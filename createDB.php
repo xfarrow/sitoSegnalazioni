@@ -62,7 +62,8 @@
 	if($conn->query($sql)) echo "Constraints aggiunti <br>";
 	else die("Constraints non aggiunti ".$conn->error);
 	
-	$sql="INSERT INTO pacchetto VALUES(0,0,NOW(),'Default');";
+	//L'utente 0 ha 2 pacchetti attribuiti perchè 1 lo usa per "autoinvitarsi", l'altro per invitare un'altra persona
+	$sql="INSERT INTO pacchetto VALUES(2,0,NOW(),'Default');";
 	if($conn->query($sql)) echo "Riga pacchetto creata";
 	else die("Errore creazione riga pacchetto ".$conn->error);
 	$conn->close();

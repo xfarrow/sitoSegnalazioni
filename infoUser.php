@@ -4,11 +4,11 @@
 	$cos = $_GET['cos'];
 	if(!isset($_SESSION['loggedIn']) or ($_SESSION['cos']!="0" and $_SESSION['cos']!=$cos) ) die("Solo gli amministratori o l'utente in questione possono visualizzare questa pagina");
 	
-	$sql="SELECT SegnalazioniIllimitate FROM user WHERE MyCos='$cos';";
+	$sql="SELECT SegnalazioniIllimitate, SegnalazioniRimaste FROM user WHERE MyCos='$cos';";
 	if(!($result=$conn->query($sql))) die("Backend query 4".$conn->error);
 	$row = $result->fetch_assoc();
 	$segnalazioniIllimitateBool = $row['SegnalazioniIllimitate'];
-	
+	$segnalazioniRimaste = $row['SegnalazioniRimaste'];
 	/*
 	- Numero segnalazioni totali attribuitegli
 	- Numero totale di pacchetti attriguitegli
@@ -57,7 +57,7 @@
 	"<br><b>Numero di segnalazioni rimaste:</b> ";
 	
 	if($segnalazioniIllimitateBool=='Y') echo"Illimitate";
-	else echo ($pacchettiAttribuiti - $numeroSegnalazioniFatte);
+	else echo $segnalazioniRimaste;
 	
 	echo "</body></html>";
 	

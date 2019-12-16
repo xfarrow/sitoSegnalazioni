@@ -3,7 +3,6 @@
 /*
 *	Questo codice PHP crea e restituisce un captcha.
 */
-
 session_start();
 
 $image = imagecreatetruecolor(120, 30);
@@ -30,3 +29,4 @@ $_SESSION['captcha'] = $captcha;
 header('Content-type: image/png');
 imagepng($image);
 imagedestroy($image);
+?>

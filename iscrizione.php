@@ -29,6 +29,13 @@
 		return false;
 		});
 		});
+		
+		
+		function pictureChange()
+		{
+			document.getElementById("captchaImage").src=$.get("./captcha.php");
+		}
+		
 	</script>
 	
 	</head>
@@ -80,7 +87,7 @@
 			
 			<br><br>
 			<b>Inserisci una indicazione sommaria dell’area geografica in cui attualmente ti trovi:</b><br>
-			<select name="countries">
+			<select name="countries" style="width: 25%;">
 					<option value="AFG">Afghanistan</option>
 					<option value="ALA">Åland Islands</option>
 					<option value="ALB">Albania</option>
@@ -450,7 +457,7 @@
 			
 			<!-- Captcha -->
 			<br>
-			<p><img src="./captcha.php" /></p>
+			<p><img id="captchaImage" src="./captcha.php" /></p> <input type="button" value="click me!" onclick="pictureChange()">
 			<b>Trascrivi i caratteri che compaiono</b> <input type="text" name="captcha" />
 			<br><br>
 			<button class="button button1" type="submbit">Invia</button>

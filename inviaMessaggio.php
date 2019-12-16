@@ -55,8 +55,8 @@
 				$sql="INSERT INTO messaggio VALUES('$cos_destinatario','$messaggio');";
 				if(!($result=$conn->query($sql))) die("Errore: controlla se il COS a cui stai inviando il messaggio esiste e se il messaggio non e' vuoto");
 			}else{
-				$sql="INSERT INTO messaggioGlobale(Text) VALUES('$messaggio');";
-				if(!($result=$conn->query($sql))) die("Errore: controlla se il COS a cui stai inviando il messaggio esiste e se il messaggio non e' vuoto");
+				$sql="INSERT INTO messaggioGlobale(Text) VALUES(\"$messaggio\");";
+				if(!($result=$conn->query($sql))) die("Errore: controlla se il messaggio non e' vuoto");
 			}
 			unset($_POST['btn']);
 			$conn->close();
