@@ -30,10 +30,27 @@
 		});
 		});
 		
-		
+		var pictureChangeCall = 0;
 		function pictureChange()
 		{
-			document.getElementById("captchaImage").src=$.get("./captcha.php");
+			document.getElementById("captchaImage").src="./captcha.php?captcha="+pictureChangeCall;
+			pictureChangeCall++;
+		}
+		
+		function clearCaptchaInput(){
+			document.getElementById("captchaInput").value="";
+		}
+		
+		function viewPassword(){
+				var pswBox = document.getElementById("password");
+				var pswBtn = document.getElementById("viewPassBtn");
+				if(pswBox.type=="password"){
+					pswBox.type="text";
+					pswBtn.value="Nascondi password";
+				}else{
+					pswBox.type="password";
+					pswBtn.value="Vedi password";
+				}
 		}
 		
 	</script>
@@ -453,14 +470,14 @@
 			
 			<br><br>
 			<b>Inserisci una PASSWORD  a tua scelta (utilizza preferibilmente password complesse contenenti lettere e numeri: potrai comunque modificare in futuro la password inserita)</b>
-			<input type="password" name="password" placeholder="Inserire password"><br>
+			<br><input id="password" type="password" name="password" placeholder="Inserire password"><br> <input id="viewPassBtn" type="button" onclick="viewPassword()" value="Vedi password"/>
 			
 			<!-- Captcha -->
 			<br>
-			<p><img id="captchaImage" src="./captcha.php" /></p> <input type="button" value="click me!" onclick="pictureChange()">
-			<b>Trascrivi i caratteri che compaiono</b> <input type="text" name="captcha" />
+			<p><img id="captchaImage" src="./captcha.php" /></p> <input type="button" value="cambia" onclick="pictureChange()"><br>
+			<b>Trascrivi i caratteri che compaiono</b> <input id="captchaInput" type="text" name="captcha" />
 			<br><br>
-			<button class="button button1" type="submbit">Invia</button>
+			<button onclick="clearCaptchaInput()" class="button button1" type="submbit">Invia</button>
 		</form><br>
 		
 		
