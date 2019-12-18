@@ -30,6 +30,7 @@
 		});
 		});
 		
+		<!-- Cambia immagine captcha-->
 		var pictureChangeCall = 0;
 		function pictureChange()
 		{
@@ -37,19 +38,13 @@
 			pictureChangeCall++;
 		}
 		
-		function clearCaptchaInput(){
-			document.getElementById("captchaInput").value="";
-		}
-		
+		<!-- Tasto visualizza password -->
 		function viewPassword(){
 				var pswBox = document.getElementById("password");
-				var pswBtn = document.getElementById("viewPassBtn");
 				if(pswBox.type=="password"){
 					pswBox.type="text";
-					pswBtn.value="Nascondi password";
 				}else{
 					pswBox.type="password";
-					pswBtn.value="Vedi password";
 				}
 		}
 		
@@ -96,9 +91,9 @@
 			<br>
 			<?php
 				if(isset($_GET['cos'])){
-					echo "<input type=\"text\" value=".$_GET['cos']." name=\"CosPadre\" placeholder=\"Inserire CS-code\">";
+					echo "<input type=\"text\" value=".$_GET['cos']." name=\"CosPadre\" placeholder=\"Inserire CS-code\" autocomplete=\"off\" required>";
 				}else{
-					echo "<input type=\"text\" name=\"CosPadre\" placeholder=\"Inserire CS-code\">";
+					echo "<input type=\"text\" name=\"CosPadre\" placeholder=\"Inserire CS-code\" autocomplete=\"off\" required>";
 				}
 			?>
 			
@@ -470,14 +465,15 @@
 			
 			<br><br>
 			<b>Inserisci una PASSWORD  a tua scelta (utilizza preferibilmente password complesse contenenti lettere e numeri: potrai comunque modificare in futuro la password inserita)</b>
-			<br><input id="password" type="password" name="password" placeholder="Inserire password"><br> <input id="viewPassBtn" type="button" onclick="viewPassword()" value="Vedi password"/>
-			
+			<br><input id="password" type="password" name="password" placeholder="Inserire password" autocomplete="off" required>
+			<br><input type="image" type="button" src="./images/hide.png" onclick="viewPassword();return false;" width="27" height="17" style="margin-top:5px; margin-bottom:10px;"/>
 			<!-- Captcha -->
 			<br>
-			<p><img id="captchaImage" src="./captcha.php" /></p> <input type="button" value="cambia" onclick="pictureChange()"><br>
-			<b>Trascrivi i caratteri che compaiono</b> <input id="captchaInput" type="text" name="captcha" />
+			<img id="captchaImage" src="./captcha.php" /> 
+			<input type="image" src="./images/shift.png" width="17" height="19" style="margin-top:3px;" onclick="pictureChange();return false;"><br>
+			<b>Trascrivi i caratteri che compaiono</b> <input id="captchaInput" type="text" name="captcha" autocomplete="off" required>
 			<br><br>
-			<button onclick="clearCaptchaInput()" class="button button1" type="submbit">Invia</button>
+			<button class="button button1" type="submbit">Invia</button>
 		</form><br>
 		
 		

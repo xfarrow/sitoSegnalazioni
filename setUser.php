@@ -89,7 +89,7 @@
 	echo"<font size=\"5\">
 	Alcune indicazioni:
 <br>
-- trascrivi in un foglio (per sicurezza evita di fare screnshot o fotografie della pagina) e conservale in luogo sicuro le credenziali e utilizzale per accedere alla piattaforma, per invitare i tuoi amici e per godere delle innumerevoli opportunità che il CS-code ti riserverà;
+- trascrivi in un foglio (per sicurezza evita di fare screenshot o fotografie della pagina) e conservalo in luogo sicuro le credenziali e utilizzale per accedere alla piattaforma, per invitare i tuoi amici e per godere delle innumerevoli opportunità che il CS-code ti riserverà;
 <br>
 - invita le persone di cui ti fidi: grazie al tuo CS-code puoi segnalare questa piattaforma ad una persona che stimi o alla quale vorresti fare un interessante regalo utilizzando la procedura di invito a partecipare alla Community (link a sottosezione del menù Attività: “INVITA”). Prendi a tal proposito visione delle (link)regole di  segnalazione di altri utenti e  i vantaggi a te riservati dall’attività di segnalazione… perché le segnalazioni da te effettuate potrebbero rappresentare delle grandi opportunità sia per te che per la persona da te segnalata;
 <br>
@@ -99,7 +99,7 @@
 </font>
 <center>
 <form name='frm' method='post' action='./inserimentoMailPhone.php'>
-<input type='text' name='email' placeholder='e-mail'><br><br><br>
+<input type='email' name='email' placeholder='e-mail'><br><br><br>
 <input type='number' name='number' placeholder='N. di telefono'><br>
 <input class='button button1' type='submit' name='btn' value='OK'>
 <center>

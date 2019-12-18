@@ -7,6 +7,16 @@
 	<head>
 	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" />
+	<script>
+		function hideCos(){
+			var cosText = document.getElementById(\"cos\");
+			if(cosText.type == \"hidden\"){
+				cosText.type=\"visible\"
+			}else{
+				document.getElementById(\"cos\").type=\"hidden\";
+			}
+		}
+	</script>
 	</head>
 	<body style = \"font-family: Cambria\">";
 	
@@ -32,12 +42,12 @@
 			echo "<center><h1>Invia messaggi</h1></center>";
 			
 			echo "<form name='frm' method='post' action='./inviaMessaggio.php'>
-			<input type='text' name='destCos' placeholder='COS destinatario'>
+			<input id=\"cos\" type='text' name='destCos' placeholder='COS destinatario'>
 			<br><br>
 			<textarea rows=\"4\" cols=\"50\" name=\"text\" placeholder=\"Messaggio\"></textarea>
 			<br><br>
 			<label class=\"container\">Globale
-				<input type=\"checkbox\" value=\"1\" name=\"global\"> &nbsp;
+				<input type=\"checkbox\" value=\"1\" name=\"global\" onclick=\"hideCos();\"> &nbsp;
 				<span class=\"checkmark\"></span>
 			</label>
 			<br><br>
