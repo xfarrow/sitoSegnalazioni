@@ -25,7 +25,7 @@
 			
 				echo "<div style='margin-left:2%'>";
 				echo "<center><h1>Assegna un pacchetto di segnalazioni</h1></center>";
-				echo "<form name='frm' method='post' action='AssegnaPacchetto.php'>
+				echo "<center><form name='frm' method='post' action='AssegnaPacchetto.php'>
 				<br><input type='text' name='destCos' placeholder='Inserire COS'>
 				<select name='NumeroSegnalazioni'>
 					<option value=1>1</option>
@@ -45,7 +45,7 @@
 					<option value=0>Illimitate</option>
 				</select><br><br><br>
 				<input type='submit' name='btn' class=\"button button1\" value='Invia'>
-				</form></div></div><br>";
+				</form></center></div></div><br>";
 			}else{
 					//CONTROLLER QUI
 					include 'create_connection.php';

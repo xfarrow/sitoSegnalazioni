@@ -257,3 +257,17 @@ textarea{
   background-color: #264d73;
   color: white;
 }
+
+input{
+	background-color:#f2f2f2;
+	border: 2px solid gray;
+}
+
+textarea{
+	background-color:#f2f2f2;
+	border: 2px solid gray;
+}
+
+select{
+	background-color:#f2f2f2;
+}

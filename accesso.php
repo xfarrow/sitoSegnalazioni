@@ -38,7 +38,7 @@
 	
 	if(!($result=$conn->query($sql))) die("Backend error 1");
 	
-	if($result->num_rows == 0) die("Non sei un utente registrato");
+	if($result->num_rows == 0) die("Non sei un utente registrato o hai inserito delle credenziali errate");
 	else if($result->num_rows == 1){ //Teoicamente basterebbe questo controllo per accertarci dell'identità, ma è vulnreabile alle injections
 		$row=$result->fetch_assoc();
 		if($row['MyCos']==$cos AND $row['Password'] == $psw){

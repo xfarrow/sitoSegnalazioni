@@ -1,17 +1,41 @@
+<html>
+		<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="css/stili.css" />
+		<link rel="stylesheet" type="text/css" href="css/w3/w3.css" />
+		
+		<script>
+			function check(){
+				var email = document.getElementById("email");
+				var phone = document.getElementById("phone");
+				
+				if(email.value=="" && phone.value==""){
+					var check =confirm("Inserire email e numero di telefono validi, in caso contrario non sarà possibile accedere con l'attività di 'attribuzione' o di 'recovery'.\nVuoi proseguire senza immettere dati?.");
+					return check;
+				}
+				return true;
+			}
+		</script>
+		
+		</head>";
+
+
 <?php
 	// Creazione utente
 	session_start();
 	include 'create_connection.php';
 	
-		echo "<html>
-		<head>
-		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-		<link rel=\"stylesheet\" type=\"text/css\" href=\"css/stili.css\" /></head>";
-	
 	
 	if( (!isset($_POST['password'])) or (!isset($_POST['CosPadre'])) ){ 
 		die("Valori obbligatori mancanti! La stringa e il COS sono obbligatori");
 	}
+	
+	
+	if(isset($_SESSION['cos'])){
+		echo "Risulti già iscritto (".$_SESSION['cos'].")<br><a href='./accesso.php'>Accedi</a>";
+		die();
+	}
+	
 	
 	$psw = md5($_POST['password']);
 	$cosPadre = $_POST['CosPadre'];
@@ -86,6 +110,7 @@
 	$_SESSION['cos'] = $myCos;
 	echo "<body style = \"font-family: Cambria\">";
 	echo "<h1><b>My CS-code: ".$myCos."</b></h1>";
+	echo "<h1><b>My password: ".$_POST['password']."</b></h1>";
 	echo"<font size=\"5\">
 	Alcune indicazioni:
 <br>
@@ -97,12 +122,25 @@
 <br>
 - se lo desideri, compila i seguenti campi: i dati inseriti potrebbero agevolare la procedura di recupero delle tue credenziali di accesso al sito oppure consentirti di ottenere direttamente via mail o via SMS le comunicazioni più importanti che ti riguardano. (Nota: se condividi anche tu la filosofia di questa piattaforma e ritieni un valore importante l’anonimato e la riservatezza che questa piattaforma è in grado di garantirti, prima di inserire il numero di telefono e/o l’indirizzo mail, leggi attentamente le (link)precauzioni da adottare nell'inserimento dell’indirizzo mail e del numero di telefono al fine di granire l’anonimato e la riservatezza).
 </font>
-<center>
-<form name='frm' method='post' action='./inserimentoMailPhone.php'>
-<input type='email' name='email' placeholder='e-mail'><br><br><br>
-<input type='number' name='number' placeholder='N. di telefono'><br>
-<input class='button button1' type='submit' name='btn' value='OK'>
-<center>
+<div>
+
+
+<form action=\"./inserimentoMailPhone.php\" class=\"w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin\" onsubmit=\"return check();\">
+<h2 class=\"w3-center\">Le tue credenziali</h2>
+<div class=\"w3-row w3-section\">
+  <div class=\"w3-col\" style=\"width:50px\"><i class=\"w3-xxlarge fa fa-envelope-o\"></i></div>
+    <div class=\"w3-rest\">
+      <input class=\"w3-input w3-border\" name=\"email\" id=\"email\" type=\"email\" placeholder=\"Email\">
+    </div>
+</div>
+<div class=\"w3-row w3-section\">
+  <div class=\"w3-col\" style=\"width:50px\"><i class=\"w3-xxlarge fa fa-phone\"></i></div>
+    <div class=\"w3-rest\">
+      <input class=\"w3-input w3-border\" name=\"number\" id=\"phone\" type=\"number\" placeholder=\"Telefono\">
+    </div>
+</div>
+<center><input class='button button1' type='submit' name='btn' value='OK'></center>
 </form>
-	";
+</div>";
+
 ?>

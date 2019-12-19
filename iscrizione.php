@@ -59,7 +59,7 @@
 			<img src='./images/close.ico' alt='quit' class='x' id='x' />
 				<div class='divScrollabile'>
 				<p><h3>
-					Informativa sui <b>COOKIES</b>, sull’utilizzo di <b>DATI SENSIBILI</b> e sugli  strumenti di <b>TRACCIAMENTO INFORMATICO</b></h3><br>
+					Cookies &amp tracking free</h3><br>
 					La registrazione dell’utente alla piattaforma e il successivo utilizzo della stessa avviene in forma completamente <b>anonima</b> e <b>priva di strumenti di tracciamento</b> (es: IP). L’anonimato e l’assenza di strumenti di tracciamento impedisce “naturalmente” (per assenza dei dati) di trasmettere a terzi i dati sensibili degli utenti o la tua specifica operatività.
 					Esclusivamente al fine di semplificare l’utilizzo di interfacce e funzioni complesse potrebbero venire utilizzati nel futuro cookies prettamente tecnici  che in quanto tali escludono finalità di tracciamento.  
 					E’ da considerarsi comunque una buona abitudine dell’utente eliminare periodicamente la globalità dei cookies registrati nel proprio browser.
@@ -99,7 +99,7 @@
 			
 			<br><br>
 			<b>Inserisci una indicazione sommaria dell’area geografica in cui attualmente ti trovi:</b><br>
-			<select name="countries" style="width: 25%;">
+			<select name="countries" id ="countries" style="width: 35%;">
 					<option value="AFG">Afghanistan</option>
 					<option value="ALA">Åland Islands</option>
 					<option value="ALB">Albania</option>
@@ -351,7 +351,7 @@
 					<option value="ZWE">Zimbabwe</option>
 			</select>
 			<br><br>
-			<select name="provincia">
+			<select name="provincia" id="provincia">
 				<option value="ag">Agrigento</option>
 				<option value="al">Alessandria</option>
 				<option value="an">Ancona</option>
@@ -466,12 +466,14 @@
 			<br><br>
 			<b>Inserisci una PASSWORD  a tua scelta (utilizza preferibilmente password complesse contenenti lettere e numeri: potrai comunque modificare in futuro la password inserita)</b>
 			<br><input id="password" type="password" name="password" placeholder="Inserire password" autocomplete="off" required>
-			<br><input type="image" type="button" src="./images/hide.png" onclick="viewPassword();return false;" width="27" height="17" style="margin-top:5px; margin-bottom:10px;"/>
+			<br><img src="./images/hide.png" onclick="viewPassword()" style="width:27px;height:17px;margin-top:5px; margin-bottom:10px;">
 			<!-- Captcha -->
 			<br>
+			<b>Trascrivi i caratteri che compaiono</b><br>
 			<img id="captchaImage" src="./captcha.php" /> 
-			<input type="image" src="./images/shift.png" width="17" height="19" style="margin-top:3px;" onclick="pictureChange();return false;"><br>
-			<b>Trascrivi i caratteri che compaiono</b> <input id="captchaInput" type="text" name="captcha" autocomplete="off" required>
+			
+			<img src="./images/shift.png" style="width:17px;height:19px;margin-top:3px;" onclick="pictureChange()"><br>
+			<input id="captchaInput" type="text" name="captcha" autocomplete="off" required>
 			<br><br>
 			<button class="button button1" type="submbit">Invia</button>
 		</form><br>
