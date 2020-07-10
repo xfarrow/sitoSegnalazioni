@@ -1,4 +1,7 @@
-Questo sito gestisce codici segnalazioni.
+# Sito segnalazioni COS
+
+#Funzionamento
+Questo sito gestisce codici segnalazioni (COS).
 Ogni utente deve necessariamente iscriversi indicando il COS che lo ha invitato. Il primo utente inserirà COS 0 in quanto nessun altro
 si è ancora iscritto. L'utente 0 funge anche da amministratore.
 L'utente riceve un codice segnalazione univoco e personale composto da 5 caratteri alfanumerici (sono consentite solo lettere UPPERCASE)
@@ -7,6 +10,9 @@ L'utente deve indicare ai prossimi utenti il proprio COS.
 Ogni utente ha una propria homepage nella quale riceve comunicazioni di servizio a livelllo globale e personale (l'utente admin (0)
 può inviare messaggi ad altri utenti).
 
-=== INFORMAZIONI PER IL SYSADMIN ===
-Il superutente ha COS 0 e password "root", ma dato che è facile da sgamare, per cambiarlo andare in createDB.php
+# Informazioni per il SYSADMIN
+Il superutente ha COS 0 e password "root". Per cambiare password andare in createDB.php
 Per creare il DB  e creare le tabelle eseguire createDB.php. Per cambiare le informazioni del server aprire create_connection.php
+
+# Bot Telegram
+Nelle repository di questo utente è presente il codice sorgente di un bot Telegram da coadiuvare a questa piattaforma web.
